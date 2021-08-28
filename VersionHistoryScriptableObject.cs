@@ -3,13 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VersionHistoryScriptableObject : ScriptableObject
+namespace VersionHistory
 {
-    [Serializable]
-    public class Version
+    public class VersionHistoryScriptableObject : ScriptableObject
     {
-        public string Name;
-        public TextAsset Text;
+        [Serializable]
+        public class Version
+        {
+            public string Name;
+            public TextAsset Text;
+        }
+        public List<Version> Versions;
     }
-    public List<Version> Versions;
 }
