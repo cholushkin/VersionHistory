@@ -7,7 +7,7 @@ Quick start tutorial:
 * Edit obtained files in the **edited** directory if needed
 * Run edited/copy.cmd to copy your change lists to unity project. Also you may need to edit **copy.cmd**  to change your project path for the first time you run the pipeline
 
-Unity will import new CL into **VersionHistory** scriptable object. And then your ingame debug menu able to show those changes in a good readable way.
+Unity will import new CL into **VersionHistory** scriptable object. And then your ingame debug menu able to show those changes in a good readable way. To do that via the GameLib DevMenu system there is a DbgVersionHistory control and prepared full screen prefab do display changes.
 
 ## Commit convention to support ChageLists
 The whole team should use current convention to make it possible to automate VersionHistory system and make commit messages in more standard and readable look. Using special script we can gain information about commits from one specific tag to another (for example: from tag v.1.06 to tag 2.0) and automatically form the version history for the game based on parsed commit messages. That version history could be available from the DevMenu, so inside the game we can always see which set of changes comes with that version.
