@@ -15,7 +15,7 @@ namespace VersionHistory
             string[] movedAssets,
             string[] movedFromAssetPaths)
         {
-            var options = VersionHistoryOptionsScriptableObject.instance;
+            var options = ScriptableObjectUtility.GetInstanceOfSingletonScriptableObject<VersionHistoryOptionsScriptableObject>();
             if (options == null)
                 return;
             var scriptableObject =

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace VersionHistory
 {
     [CreateAssetMenu(fileName = "VersionHistoryOptions", menuName = "ScriptableObjects/VersionHistoryOptionsScriptableObject", order = 1)]
-    public class VersionHistoryOptionsScriptableObject : ScriptableSingleton<VersionHistoryOptionsScriptableObject>
+    public class VersionHistoryOptionsScriptableObject : ScriptableObject
     {
         [Tooltip("User change lists (CL) have to be placed here. User generate CL using py scripts from git")]
         public string UserCLDirectory; // all txt with CL should be placed here
