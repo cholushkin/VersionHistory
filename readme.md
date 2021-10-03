@@ -1,5 +1,5 @@
 # GameLib.VersionHistory v.1.0
-GameLib.VersionHistory is a module for GameLib which helps you to manage version history of the game. It uses git commit messages for describe changes. Git tags to distinguish version numbers. And prepares data for unity project so you can display it in a convinient way from the debug menu of the game.
+GameLib.VersionHistory is a module for GameLib which helps you to manage version history of the game or some module. It uses git commit messages for describe changes. Git tags to distinguish version numbers. And prepares data for unity project so you can display it in a convinient way from the debug menu of the game.
 Quick start tutorial:
 
 * Copy PrepareChangeLists directory outside Unity project. 

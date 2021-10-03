@@ -15,42 +15,66 @@ namespace VersionHistory
             string[] movedAssets,
             string[] movedFromAssetPaths)
         {
-            var options = ScriptableObjectUtility.GetInstanceOfSingletonScriptableObject<VersionHistoryOptionsScriptableObject>();
-            if (options == null)
-                return;
-            var scriptableObject =
-                ScriptableObjectUtility.GetInstanceOfScriptableObject<VersionHistoryScriptableObject>(
-                    options.OutputDirectory, GetScriptableObjectFileName());
-            if (scriptableObject == null)
-                return;
+            var versionHistorySources = ScriptableObjectUtility.GetInstancesOfScriptableObject<VersionHistoryImportSource>();
 
-            if (scriptableObject.Versions == null)
-                scriptableObject.Versions = new List<VersionHistoryScriptableObject.Version>();
-
-            var isDataChanged = false;
+            // If txt belongs to any import source than reimport entire source
+            HashSet<VersionHistoryImportSource> toReimport = new HashSet<VersionHistoryImportSource>();
             foreach (string assetPath in importedAssets)
             {
-                if (assetPath.EndsWith(".txt") && assetPath.Contains(options.UserCLDirectory))
-                {
-                    // remove if exists 
-                    var verString = GetVersion(assetPath);
-                    scriptableObject.Versions.RemoveAll(x => x.Name == verString);
-
-                    // add new
-                    var version = new VersionHistoryScriptableObject.Version();
-                    version.Name = verString;
-                    version.Text = (TextAsset)AssetDatabase.LoadAssetAtPath(assetPath, typeof(TextAsset));
-                    scriptableObject.Versions.Add(version);
-
-                    isDataChanged = true;
-                }
+                var source = GetSource(assetPath, versionHistorySources);
+                if (source != null)
+                    toReimport.Add(source);
             }
 
-            if (isDataChanged)
+            foreach (var versionHistoryImportSource in toReimport)
+                ReimportVersionHistoryScriptableObject(versionHistoryImportSource);
+        }
+
+        private static void ReimportVersionHistoryScriptableObject(VersionHistoryImportSource versionHistoryImportSource)
+        {
+            Assert.IsNotNull(versionHistoryImportSource);
+
+            // Create new or get the old one
+            var versionHistorySO = ScriptableObjectUtility.GetInstanceOfScriptableObject<VersionHistoryScriptableObject>(
+                versionHistoryImportSource.OutputDirectory, GetScriptableObjectFileName(versionHistoryImportSource.ModuleName));
+
+            Assert.IsNotNull(versionHistoryImportSource);
+
+            // Clear old version items
+            versionHistorySO.Versions = new List<VersionHistoryScriptableObject.Version>();
+
+            // Get all CL of this source
+            DirectoryInfo dir = new DirectoryInfo(versionHistoryImportSource.UserCLDirectory);
+            FileInfo[] info = dir.GetFiles("*.txt");
+            foreach (FileInfo f in info)
             {
-                scriptableObject.Versions = scriptableObject.Versions.OrderByDescending(x => x.Name).ToList();
-                EditorUtility.SetDirty(scriptableObject);
+                var verString = GetVersion(f.Name);
+
+                string fullPath = f.FullName.Replace(@"\", "/");
+                string assetPath = "Assets" + fullPath.Replace(Application.dataPath, "");
+
+                var version = new VersionHistoryScriptableObject.Version
+                {
+                    Name = verString,
+                    Text = (TextAsset)AssetDatabase.LoadAssetAtPath(assetPath, typeof(TextAsset))
+                };
+                versionHistorySO.Versions.Add(version);
             }
+            versionHistorySO.Versions = versionHistorySO.Versions.OrderByDescending(x => x.Name).ToList();
+            EditorUtility.SetDirty(versionHistorySO);
+            AssetDatabase.Refresh();
+        }
+
+        public static VersionHistoryImportSource GetSource(string assetFullPath, VersionHistoryImportSource[] sources)
+        {
+            var extension = Path.GetExtension(assetFullPath);
+            if (!extension.Equals(".txt"))
+                return null;
+            
+            foreach (var src in sources)
+                if (assetFullPath.StartsWith(src.UserCLDirectory))
+                    return src;
+            return null;
         }
 
         private static string GetVersion(string assetPath)
@@ -60,9 +84,9 @@ namespace VersionHistory
             return ver;
         }
 
-        private static string GetScriptableObjectFileName()
+        private static string GetScriptableObjectFileName(string moduleName)
         {
-            return "VersionHistory.asset";
+            return $"{moduleName}VersionHistory.asset";
         }
     }
 }
