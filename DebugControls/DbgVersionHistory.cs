@@ -1,9 +1,10 @@
-﻿using GameLib;
-
-public class DbgVersionHistory : DebugLayoutElement
+﻿namespace GameLib.Dbg
 {
-    public override string GetPrefabBasedOnName()
+    public class DbgVersionHistory : DebugLayoutElement
     {
-        return "VersionHistory";
+        public override string GetPrefabBasedOnName()
+        {
+            return "VersionHistory";
+        }
     }
 }
