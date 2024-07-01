@@ -8,16 +8,26 @@ namespace VersionHistory
 	public class ChangeLogEditor : Editor
 	{
 		public List<ChangeLogScriptableObject.Item> items;
-		private Vector2 scrollPosition;
 		public override void OnInspectorGUI()
 		{
 			DrawDefaultInspector();
-
+			
 			ChangeLogScriptableObject changeLog = (ChangeLogScriptableObject)target;
+			string assetPath = AssetDatabase.GetAssetPath(changeLog);
+			string workingDirectory = System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(assetPath));
+			
+			
+			
+			if (GUILayout.Button("Fetch versions"))
+			{
+				Debug.Log($"Working with git repo: {workingDirectory}");
+				var verFetcher = new VersionsFetcher(workingDirectory);
+				verFetcher.FetchTags();
+			}
+			
 			if (GUILayout.Button("Get Changes"))
 			{
-				string assetPath = AssetDatabase.GetAssetPath(changeLog);
-				string workingDirectory = System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(assetPath));
+				
 
 				var gitFetcher = new GitLogFetcher(workingDirectory);
 				var commits = gitFetcher.FetchCommitMessages();
