@@ -9,6 +9,7 @@ namespace VersionHistory
 		private string _gitPath;
 		private List<string> _output;
 		private const string _gitCommand = "tag";
+		private string _notVersionedYetLabel = "not-versioned-yet";
 
 		public VersionsFetcher(string pathToGidDir)
 		{
@@ -18,8 +19,15 @@ namespace VersionHistory
 		public List<string> FetchTags()
 		{
 			var git = new Git(_gitPath);
-			git.ExecuteCommand("tag");
-			foreach (var output in git.Output)
+			git.ExecuteCommand("tag --sort=-v:refname");
+
+			_output = new List<string>(git.Output.Count + 1);
+			_output.Add(_notVersionedYetLabel);
+			_output.AddRange(git.Output);
+			
+			
+			Debug.Log($"Fetched version tags:");
+			foreach (var output in _output)
 			{
 				Debug.Log(output);
 			}

@@ -20,7 +20,7 @@ namespace VersionHistory
 			
 			if (GUILayout.Button("Fetch versions"))
 			{
-				Debug.Log($"Working with git repo: {workingDirectory}");
+				Debug.Log($"Working with git repo: {new Git(workingDirectory).ExecuteCommand("rev-parse --show-toplevel").Output[0]}");
 				var verFetcher = new VersionsFetcher(workingDirectory);
 				verFetcher.FetchTags();
 			}

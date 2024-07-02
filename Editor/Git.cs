@@ -15,7 +15,7 @@ namespace VersionHistory
 			_gitPath = pathToGidDir;
 		}
 
-		public void ExecuteCommand(string command, DataReceivedEventHandler dataEventHandler = null,
+		public Git ExecuteCommand(string command, DataReceivedEventHandler dataEventHandler = null,
 			DataReceivedEventHandler errorHandler = null)
 		{
 			Output = new List<string>();
@@ -47,6 +47,8 @@ namespace VersionHistory
 				UnityEngine.Debug.LogError(e);
 				throw;
 			}
+
+			return this;
 		}
 
 		private void DefaultOutputHandler(object sendingProcess, DataReceivedEventArgs outLine)
