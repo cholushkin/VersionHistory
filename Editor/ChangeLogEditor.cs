@@ -12,6 +12,16 @@ namespace VersionHistory
         private Dictionary<string, ReorderableList> reorderableLists = new Dictionary<string, ReorderableList>();
         private Dictionary<string, bool> foldoutStates = new Dictionary<string, bool>();
         private string selectedVersion;
+        private readonly Dictionary<ChangeLogScriptableObject.Item.ChangeCategory, Color> categoryColors = new()
+        {
+            { ChangeLogScriptableObject.Item.ChangeCategory.Undetermined, Color.white },
+            { ChangeLogScriptableObject.Item.ChangeCategory.Added, Color.green },
+            { ChangeLogScriptableObject.Item.ChangeCategory.Changed, Color.yellow },
+            { ChangeLogScriptableObject.Item.ChangeCategory.Deprecated, Color.magenta },
+            { ChangeLogScriptableObject.Item.ChangeCategory.Removed, Color.red },
+            { ChangeLogScriptableObject.Item.ChangeCategory.Fixed, Color.blue },
+            { ChangeLogScriptableObject.Item.ChangeCategory.Security, Color.cyan }
+        };
 
         public override void OnInspectorGUI()
         {
@@ -30,22 +40,37 @@ namespace VersionHistory
                     if (!foldoutStates.ContainsKey(version.VersionName))
                     {
                         foldoutStates[version.VersionName] = false;
-                    }
+                    }                    
 
                     bool foldoutState = foldoutStates[version.VersionName];
                     foldoutStates[version.VersionName] = EditorGUILayout.Foldout(foldoutState, version.VersionName);
 
+                    // Check if this version is selected
+                    bool isSelected = version.VersionName == selectedVersion;
+
+                    // Draw the version label with yellow background if selected
+                    Color previousBackgroundColor = GUI.backgroundColor;
+                    if (isSelected)
+                    {
+                        GUI.backgroundColor = Color.yellow;
+                    }
+
+                    EditorGUILayout.BeginHorizontal();
+
+                    if (GUILayout.Button("select", GUILayout.Width(64)))
+                    {
+                        selectedVersion = version.VersionName;
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+                    GUI.backgroundColor = previousBackgroundColor;
+
                     if (foldoutStates[version.VersionName])
                     {
-                        if (selectedVersion != version.VersionName)
-                        {
-                            selectedVersion = version.VersionName;
-                        }
-
                         if (!reorderableLists.ContainsKey(version.VersionName))
                         {
                             var list = new ReorderableList(version.Items, typeof(ChangeLogScriptableObject.Item), true, false, true, true);
-                        
+
                             list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) => {
                                 var item = version.Items[index];
                                 rect.y += 2;
@@ -55,10 +80,12 @@ namespace VersionHistory
 
                                 item.Exluded = EditorGUI.Toggle(new Rect(rect.x, rect.y, toggleWidth, EditorGUIUtility.singleLineHeight), item.Exluded);
                                 item.Category = (ChangeLogScriptableObject.Item.ChangeCategory)EditorGUI.EnumPopup(
-                                    new Rect(rect.x + toggleWidth + spacing, rect.y, categoryWidth, EditorGUIUtility.singleLineHeight), item.Category);
+                                    new Rect(rect.x + toggleWidth + spacing, rect.y, categoryWidth, EditorGUIUtility.singleLineHeight), item.Category, GetEnumStyle(item.Category));
+                                
                                 item.Description = EditorGUI.TextArea(
                                     new Rect(rect.x + toggleWidth + categoryWidth + 2 * spacing, rect.y, rect.width - toggleWidth - categoryWidth - 2 * spacing, EditorGUIUtility.singleLineHeight),
                                     item.Description);
+
                             };
 
                             reorderableLists[version.VersionName] = list;
@@ -115,23 +142,30 @@ namespace VersionHistory
                 {
                     EditorGUILayout.BeginHorizontal();
 
-                    t.Category = (ChangeLogScriptableObject.Item.ChangeCategory)EditorGUILayout.EnumPopup(t.Category, GUILayout.Width(100));
+                    t.Category = (ChangeLogScriptableObject.Item.ChangeCategory)EditorGUILayout.EnumPopup(t.Category,  GetEnumStyle(t.Category), GUILayout.Width(100));
+                    
                     GUIStyle textAreaStyle = new GUIStyle(EditorStyles.textField) { wordWrap = true };
                     t.Description = EditorGUILayout.TextArea(t.Description, textAreaStyle, GUILayout.ExpandHeight(true));
 
                     if (GUILayout.Button("+", GUILayout.Width(32)))
                     {
-                        // Add the item to the currently selected version
+                        // Create a copy of the item 't'
+                        ChangeLogScriptableObject.Item newItem = new ChangeLogScriptableObject.Item();
+                        newItem.Category = t.Category;
+                        newItem.Description = t.Description;
+
+                        // Add the item copy to the currently selected version
                         if (!string.IsNullOrEmpty(selectedVersion))
                         {
                             var version = changeLog.Versions.Find(v => v.VersionName == selectedVersion);
                             if (version != null)
                             {
-                                version.Items.Add(t);
+                                version.Items.Add(newItem);
                                 EditorUtility.SetDirty(changeLog); // Mark the object as "dirty" to ensure changes are saved
                             }
                         }
                     }
+
 
                     EditorGUILayout.EndHorizontal();
                 }
@@ -141,6 +175,18 @@ namespace VersionHistory
             {
                 EditorUtility.SetDirty(changeLog); // Mark the object as "dirty" to ensure changes are saved
             }
+        }
+        
+        // Helper method to get GUIStyle for enum popup with custom color
+        private GUIStyle GetEnumStyle(ChangeLogScriptableObject.Item.ChangeCategory category)
+        {
+            GUIStyle style = new GUIStyle(EditorStyles.popup);
+            if (categoryColors.ContainsKey(category))
+            {
+                Color color = categoryColors[category];
+                style.normal.textColor = color;
+            }
+            return style;
         }
     }
 }
