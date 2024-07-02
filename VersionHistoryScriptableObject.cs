@@ -22,6 +22,8 @@ namespace VersionHistory
                 Security
             }
 
+            [Tooltip("Excluded from changelog generation")]
+            public bool Exluded; 
             public ChangeCategory Category;
             [Multiline]
             public string Description;

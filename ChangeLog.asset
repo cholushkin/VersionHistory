@@ -15,11 +15,127 @@ MonoBehaviour:
   Versions:
   - VersionName: v.1.0.0
     Items:
-    - Category: 1
-      Description: 'terterte
-
-        sdfsd
-
-        sdf
-
-        sdf'
+    - Exluded: 1
+      Category: 0
+      Description: nnnn
+    - Exluded: 1
+      Category: 0
+      Description: '* Multiple import sources support added;'
+    - Exluded: 1
+      Category: 0
+      Description: 
+    - Exluded: 1
+      Category: 0
+      Description: readme.txt edited online with Bitbucket
+    - Exluded: 1
+      Category: 0
+      Description: '* meta'
+    - Exluded: 1
+      Category: 0
+      Description: '* Multiple import sources support added;'
+    - Exluded: 1
+      Category: 0
+      Description: 'refactoring: namespaces'
+    - Exluded: 1
+      Category: 0
+      Description: '* Multiple import sources support added;'
+    - Exluded: 1
+      Category: 0
+      Description: 'change: rethinking of the library'
+    - Exluded: 1
+      Category: 0
+      Description: + added debug controls for GameLib DevMenu System
+    - Exluded: 0
+      Category: 0
+      Description: '* Multiple import sources support added;'
+    - Exluded: 0
+      Category: 0
+      Description: 'refactoring: namespaces'
+  - VersionName: not-versioned-yet
+    Items:
+    - Exluded: 1
+      Category: 0
+      Description: 'refactoring: namespaces'
+    - Exluded: 1
+      Category: 0
+      Description: 'change: rethinking of the library'
+    - Exluded: 1
+      Category: 0
+      Description: 
+    - Exluded: 0
+      Category: 0
+      Description: readme.md edited online with Bitbucket
+    - Exluded: 0
+      Category: 0
+      Description: '* meta'
+    - Exluded: 0
+      Category: 0
+      Description: 'add: Git class for handy git commands execution'
+    - Exluded: 0
+      Category: 0
+      Description: 'change: rethinking of the library'
+    - Exluded: 0
+      Category: 0
+      Description: 'change: rethinking of the library'
+    - Exluded: 0
+      Category: 0
+      Description: '* Multiple import sources support added;'
+    - Exluded: 0
+      Category: 0
+      Description: 'refactoring: namespaces'
+    - Exluded: 0
+      Category: 0
+      Description: 'add: Git class for handy git commands execution'
+    - Exluded: 0
+      Category: 0
+      Description: 'feat: version fetcher adds "not-versioned-yet" section'
+    - Exluded: 0
+      Category: 0
+      Description: '* singleton scriptable object'
+    - Exluded: 0
+      Category: 0
+      Description: '* Multiple import sources support added;'
+  - VersionName: v.0.2.0
+    Items:
+    - Exluded: 1
+      Category: 0
+      Description: 
+    - Exluded: 1
+      Category: 0
+      Description: 
+    - Exluded: 0
+      Category: 0
+      Description: 
+    - Exluded: 0
+      Category: 0
+      Description: 
+    - Exluded: 0
+      Category: 0
+      Description: 'add: Git class for handy git commands execution'
+    - Exluded: 0
+      Category: 0
+      Description: 'feat: version fetcher adds "not-versioned-yet" section'
+    - Exluded: 0
+      Category: 0
+      Description: '* singleton scriptable object'
+    - Exluded: 0
+      Category: 0
+      Description: '* singleton scriptable object'
+    - Exluded: 0
+      Category: 0
+      Description: 'change: rethinking of the library'
+    - Exluded: 0
+      Category: 0
+      Description: 'feat: version fetcher adds "not-versioned-yet" section'
+    - Exluded: 0
+      Category: 0
+      Description: 'add: Git class for handy git commands execution'
+    - Exluded: 0
+      Category: 0
+      Description: 'feat: version fetcher adds "not-versioned-yet" section'
+    - Exluded: 0
+      Category: 0
+      Description: 'refactoring: namespaces'
+    - Exluded: 0
+      Category: 0
+      Description: 'change: rethinking of the library'

@@ -32,7 +32,7 @@ namespace VersionHistory
 				Debug.Log(output);
 			}
 
-			return null;
+			return _output;
 		}
 	}
 }
