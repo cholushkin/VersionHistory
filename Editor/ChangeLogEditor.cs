@@ -134,6 +134,12 @@ namespace VersionHistory
 
                 EditorUtility.SetDirty(changeLog); // Mark the object as "dirty" to ensure changes are saved
             }
+
+            if (GUILayout.Button("Export changelog"))
+            {
+                //changeLog.Settings.MarkdownChangeLogPath
+                
+            }
             
             // Display the list of items
             if (items != null)
@@ -164,6 +170,10 @@ namespace VersionHistory
                                 EditorUtility.SetDirty(changeLog); // Mark the object as "dirty" to ensure changes are saved
                             }
                         }
+                        else
+                        {
+                            Debug.Log("Please 'select' version first");
+                        }
                     }
 
 
@@ -175,6 +185,8 @@ namespace VersionHistory
             {
                 EditorUtility.SetDirty(changeLog); // Mark the object as "dirty" to ensure changes are saved
             }
+            
+            DrawDefaultInspector();
         }
         
         // Helper method to get GUIStyle for enum popup with custom color

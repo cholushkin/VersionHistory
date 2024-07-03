@@ -35,6 +35,9 @@ namespace VersionHistory
             public string VersionName;
             public List<Item> Items;
         }
+        
+        [HideInInspector]
         public List<Version> Versions;
+        public ChangeLogSettings Settings;
     }
 }

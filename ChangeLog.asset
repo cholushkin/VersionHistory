@@ -86,7 +86,7 @@ MonoBehaviour:
       Description: '* meta'
     - Exluded: 0
       Category: 0
-      Description: '* meta'
+      Description: 11111
   - VersionName: v.1.0.0
     Items:
     - Exluded: 1
@@ -264,3 +264,6 @@ MonoBehaviour:
       Description: 'aaaa
 
 '
+  Settings:
+    GenerateMarkdownChangeLog: 1
+    MarkdownChangeLogPath: 
