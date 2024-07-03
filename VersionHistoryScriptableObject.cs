@@ -23,7 +23,7 @@ namespace VersionHistory
             }
 
             [Tooltip("Excluded from changelog generation")]
-            public bool Exluded; 
+            public bool Included = true; 
             public ChangeCategory Category;
             [Multiline]
             public string Description;
@@ -33,11 +33,18 @@ namespace VersionHistory
         public class Version
         {
             public string VersionName;
-            public List<Item> Items;
+            public List<Item> Items = new();
         }
         
         [HideInInspector]
         public List<Version> Versions;
         public ChangeLogSettings Settings;
+
+
+        public void Reset()
+        {
+            Settings.GenerateMarkdownChangeLog = true;
+            Settings.MarkdownChangeLogPath = "ChangeLog.md";
+        }
     }
 }

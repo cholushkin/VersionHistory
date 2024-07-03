@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
+using VersionHistory.VersionHistory;
 
 namespace VersionHistory
 {
@@ -39,7 +41,7 @@ namespace VersionHistory
                     // Initialize foldout state if not already present
                     if (!foldoutStates.ContainsKey(version.VersionName))
                     {
-                        foldoutStates[version.VersionName] = false;
+                        foldoutStates[version.VersionName] = true;
                     }                    
 
                     bool foldoutState = foldoutStates[version.VersionName];
@@ -78,7 +80,7 @@ namespace VersionHistory
                                 float categoryWidth = 100;
                                 float spacing = 5;
 
-                                item.Exluded = EditorGUI.Toggle(new Rect(rect.x, rect.y, toggleWidth, EditorGUIUtility.singleLineHeight), item.Exluded);
+                                item.Included = EditorGUI.Toggle(new Rect(rect.x, rect.y, toggleWidth, EditorGUIUtility.singleLineHeight), item.Included);
                                 item.Category = (ChangeLogScriptableObject.Item.ChangeCategory)EditorGUI.EnumPopup(
                                     new Rect(rect.x + toggleWidth + spacing, rect.y, categoryWidth, EditorGUIUtility.singleLineHeight), item.Category, GetEnumStyle(item.Category));
                                 
@@ -137,8 +139,13 @@ namespace VersionHistory
 
             if (GUILayout.Button("Export changelog"))
             {
-                //changeLog.Settings.MarkdownChangeLogPath
-                
+                if (changeLog.Settings.GenerateMarkdownChangeLog)
+                {
+                    var repoRoot = new Git(workingDirectory).ExecuteCommand("rev-parse --show-toplevel").Output[0];
+                    var path = Path.Combine(repoRoot, changeLog.Settings.MarkdownChangeLogPath);
+                    var renderer = new ChangeLogMarkdownRenderer(path, changeLog.Versions, changeLog.Settings);
+                    renderer.Render();
+                }
             }
             
             // Display the list of items

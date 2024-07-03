@@ -15,255 +15,40 @@ MonoBehaviour:
   Versions:
   - VersionName: not-versioned-yet
     Items:
-    - Exluded: 1
-      Category: 0
-      Description: 'refactoring: namespaces'
-    - Exluded: 1
-      Category: 0
-      Description: 
-    - Exluded: 0
-      Category: 0
-      Description: readme.md edited online with Bitbucket
-    - Exluded: 0
-      Category: 0
-      Description: '* meta'
-    - Exluded: 0
-      Category: 0
-      Description: 'add: Git class for handy git commands execution'
-    - Exluded: 0
-      Category: 0
+    - Included: 1
+      Category: 1
       Description: 'change: rethinking of the library'
-    - Exluded: 0
-      Category: 0
-      Description: 'change: rethinking of the library'
-    - Exluded: 0
-      Category: 0
+    - Included: 1
+      Category: 1
       Description: '* Multiple import sources support added;'
-    - Exluded: 0
-      Category: 0
-      Description: 'refactoring: namespaces'
-    - Exluded: 0
-      Category: 0
-      Description: 'add: Git class for handy git commands execution'
-    - Exluded: 0
-      Category: 0
-      Description: '* singleton scriptable object'
-    - Exluded: 0
-      Category: 0
-      Description: '* Multiple import sources support added;'
-    - Exluded: 0
-      Category: 0
-      Description: 'refactoring: namespaces'
-    - Exluded: 0
-      Category: 0
-      Description: 'change: rethinking of the library'
-    - Exluded: 0
-      Category: 0
-      Description: readme.md edited online with Bitbucket
-    - Exluded: 0
-      Category: 0
-      Description: 'feat: version fetcher adds "not-versioned-yet" section'
-    - Exluded: 0
-      Category: 0
-      Description: 'feat: version fetcher adds "not-versioned-yet" section'
-    - Exluded: 0
-      Category: 0
-      Description: 'docs: add readme.md
-
-        feat: changelog inspector draft
-        using chat gpt
-
-        sdfsd
-
-        sdfs
-
-'
-    - Exluded: 0
-      Category: 0
-      Description: 'add: Git class for handy git commands execution'
-    - Exluded: 0
-      Category: 0
-      Description: '* meta'
-    - Exluded: 0
-      Category: 0
-      Description: 11111
+    - Included: 1
+      Category: 1
+      Description: readme.txt edited online with Bitbucket
   - VersionName: v.1.0.0
     Items:
-    - Exluded: 1
+    - Included: 1
       Category: 1
-      Description: nnnn
-    - Exluded: 1
-      Category: 4
-      Description: 
-    - Exluded: 1
-      Category: 0
-      Description: '* Multiple import sources support added;'
-    - Exluded: 1
-      Category: 0
-      Description: readme.txt edited online with Bitbucket
-    - Exluded: 1
-      Category: 3
-      Description: '* meta'
-    - Exluded: 1
-      Category: 2
-      Description: '* Multiple import sources support added;'
-    - Exluded: 1
-      Category: 2
       Description: 'refactoring: namespaces'
-    - Exluded: 1
-      Category: 5
+    - Included: 1
+      Category: 1
       Description: '* Multiple import sources support added;'
-    - Exluded: 1
-      Category: 0
-      Description: 'change: rethinking of the library'
-    - Exluded: 1
-      Category: 0
-      Description: + added debug controls for GameLib DevMenu System
-    - Exluded: 0
-      Category: 2
-      Description: '* Multiple import sources support added;'
-    - Exluded: 0
-      Category: 0
-      Description: 'refactoring: namespaces'
-    - Exluded: 0
-      Category: 0
-      Description: 'docs: add readme.md
-
-        feat: changelog inspector draft
-        using chat gpt
-
-        sdfsd
-
-        sdfs
-
-'
-    - Exluded: 0
-      Category: 2
-      Description: 'docs: add readme.md
-
-        feat: changelog inspector draft
-        using chat gpt
-
-        sdfsd
-
-        sdfs
-
-'
-    - Exluded: 0
-      Category: 3
-      Description: 'docs: add readme.md
-
-        feat: changelog inspector draft
-        using chat gpt
-
-        sdfsd
-
-        sdfs
-
-'
-    - Exluded: 0
-      Category: 0
-      Description: 'add: Git class for handy git commands execution'
-    - Exluded: 0
-      Category: 0
-      Description: 'docs: add readme.md
-
-        feat: changelog inspector draft
-        using chat gpt
-
-        sdfsd
-
-        sdfs
-
-'
-    - Exluded: 0
-      Category: 0
-      Description: '* meta'
-    - Exluded: 0
-      Category: 0
-      Description: '* meta'
-    - Exluded: 0
-      Category: 5
-      Description: 'change: rethinking of the library'
-    - Exluded: 0
-      Category: 0
-      Description: 'change: rethinking of the library'
-    - Exluded: 0
-      Category: 0
-      Description: dfgdfgdfgddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddfgdf
-    - Exluded: 0
-      Category: 3
-      Description: dfgdf
-    - Exluded: 0
-      Category: 3
-      Description: dfgdf
+    - Included: 1
+      Category: 1
+      Description: '* version history 1.0'
   - VersionName: v.0.2.0
     Items:
-    - Exluded: 0
-      Category: 0
-      Description: 
-    - Exluded: 0
-      Category: 0
-      Description: 
-    - Exluded: 0
-      Category: 0
-      Description: 
-    - Exluded: 0
-      Category: 0
-      Description: 
-    - Exluded: 0
-      Category: 0
+    - Included: 1
+      Category: 1
       Description: 'add: Git class for handy git commands execution'
-    - Exluded: 0
-      Category: 0
-      Description: 'feat: version fetcher adds "not-versioned-yet" section'
-    - Exluded: 0
-      Category: 0
-      Description: '* singleton scriptable object'
-    - Exluded: 0
-      Category: 0
-      Description: gdfgdfgd
-    - Exluded: 0
-      Category: 0
-      Description: 'feat: version fetcher adds "not-versioned-yet" section'
-    - Exluded: 0
-      Category: 0
-      Description: 'add: Git class for handy git commands execution'
-    - Exluded: 0
-      Category: 0
-      Description: 'feat: version fetcher adds "not-versioned-yet" section'
-    - Exluded: 0
-      Category: 0
-      Description: 'refactoring: namespaces'
-    - Exluded: 0
-      Category: 0
-      Description: 'change: rethinking of the library'
-    - Exluded: 0
-      Category: 0
-      Description: 'change: rethinking of the library'
-    - Exluded: 0
-      Category: 0
-      Description: dfgdfgdfgdf
-    - Exluded: 0
+    - Included: 1
       Category: 1
-      Description: dfgdfgfd
-    - Exluded: 0
-      Category: 3
-      Description: dfgdf
-    - Exluded: 0
+      Description: '* meta'
+    - Included: 1
       Category: 1
-      Description: dfgdfgfd
-    - Exluded: 0
-      Category: 3
-      Description: dfgdf
-    - Exluded: 0
-      Category: 2
-      Description: readme.md edited online with Bitbucket
-    - Exluded: 0
-      Category: 1
-      Description: 'aaaa
-
-'
+      Description: + added debug controls for GameLib DevMenu System
   Settings:
+    IntroText: All significant updates to this product will be recorded in this file.
+    CompanyName: DefaultCompany
+    CopyrightString: "\xA9 20xx {0}. All rights reserved."
     GenerateMarkdownChangeLog: 1
-    MarkdownChangeLogPath: 
+    MarkdownChangeLogPath: ChangeLog.md
