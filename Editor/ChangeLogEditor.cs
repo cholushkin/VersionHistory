@@ -61,7 +61,8 @@ namespace VersionHistory
 
                     if (GUILayout.Button("select", GUILayout.Width(64)))
                     {
-                        selectedVersion = version.VersionName;
+                        // Select/deselect
+                        selectedVersion = selectedVersion == version.VersionName ? null : version.VersionName;
                     }
                     EditorGUILayout.EndHorizontal();
 
@@ -122,7 +123,10 @@ namespace VersionHistory
                 }
             }
 
-            if (GUILayout.Button("Get Changes"))
+            var context = "all commits";
+            if (!string.IsNullOrEmpty(selectedVersion))
+                context = $"commits for {selectedVersion}";
+            if (GUILayout.Button($"Get suggestions({context})"))
             {
                 var gitFetcher = new GitLogFetcher(workingDirectory);
                 var commits = gitFetcher.FetchCommitMessages();
