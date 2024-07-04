@@ -148,6 +148,15 @@ namespace VersionHistory
                 }
             }
             
+            // Delete suggestions button
+            if (items is { Count: > 0 })
+            {
+                if (GUILayout.Button("Remove suggestions"))
+                {
+                    items = new List<ChangeLogScriptableObject.Item>();
+                }
+            }
+            
             // Display the list of items
             if (items != null)
             {
