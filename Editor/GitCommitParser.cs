@@ -41,14 +41,16 @@ namespace VersionHistory
 				case "changed":
 				case "update":
 				case "updated":
+				case "chore":
+				case "chores":
 					return ChangeLogScriptableObject.Item.ChangeCategory.Changed;
 
 				case "deprecated":
 					return ChangeLogScriptableObject.Item.ChangeCategory.Deprecated;
 
 				case "remove":
-				case "delete":
 				case "removed":
+				case "delete":
 				case "deleted":
 					return ChangeLogScriptableObject.Item.ChangeCategory.Removed;
 
