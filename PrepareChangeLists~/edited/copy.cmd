@@ -1,1 +1,0 @@
-copy *.txt ..\..\..\UnityProjectName\Assets\Game\VersionHistory\ChangeLists

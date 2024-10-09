@@ -106,7 +106,9 @@ namespace VersionHistory
             EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
 
             string assetPath = AssetDatabase.GetAssetPath(changeLog);
-            string workingDirectory = System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(assetPath));
+            if(string.IsNullOrEmpty(assetPath))
+                return;
+            string workingDirectory = Path.GetDirectoryName(Path.GetFullPath(assetPath));
 
             if (GUILayout.Button("Fetch versions"))
             {

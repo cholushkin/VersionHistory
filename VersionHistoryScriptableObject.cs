@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace VersionHistory
 {
-    [CreateAssetMenu(fileName = "ChangeLog", menuName = "GameLib/ChangeLog", order = 1)]
+    [CreateAssetMenu(fileName = "ChangeLog", menuName = "GameLib/VersionHistory/ChangeLog", order = 1)]
     public class ChangeLogScriptableObject : ScriptableObject
     {
         [Serializable]
@@ -38,13 +38,14 @@ namespace VersionHistory
         
         [HideInInspector]
         public List<Version> Versions;
-        public ChangeLogSettings Settings;
+        public ChangeLogSettings Settings = new();
 
 
         public void Reset()
         {
             Settings.GenerateMarkdownChangeLog = true;
             Settings.MarkdownChangeLogPath = "ChangeLog.md";
+            Settings.CompanyName = Application.companyName;
         }
     }
 }
