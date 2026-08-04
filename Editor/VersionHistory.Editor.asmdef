@@ -1,0 +1,20 @@
+{
+    "name": "VersionHistory.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7ab00197b9ccedb4c9660527c7b2620a",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:4129704b5a1a13841ba16f230bf24a57"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
