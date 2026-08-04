@@ -1,19 +1,33 @@
+// todo: consider adding a release date field to VersionEntry in the future
+// idea: add an internal method to sort versions by semver if tags get added out of order
+
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace GameLib.VersionHistory
 {
-    [CreateAssetMenu(fileName = "VersionManifest", menuName = "GameLib/VersionHistory/Version Manifest", order = 1)]
-    public class VersionManifest : ScriptableObject
+
+    [CreateAssetMenu(fileName = "VersionHistory", menuName = "GameLib/VersionHistory/Version History", order = 1)]
+    public class VersionHistory : ScriptableObject
     {
         [SerializeField] private List<VersionEntry> _versions = new();
 
         public IReadOnlyList<VersionEntry> Versions => _versions;
 
-        internal void SetVersions(List<VersionEntry> versions)
+        internal void AddOrUpdateVersion(string versionName, IEnumerable<ChangeItem> changes)
         {
-            _versions = versions;
+            var existingVersion = _versions.FirstOrDefault(v => v.VersionName == versionName);
+
+            if (existingVersion != null)
+            {
+                existingVersion.AddChanges(changes);
+            }
+            else
+            {
+                _versions.Add(new VersionEntry(versionName, changes.ToList()));
+            }
         }
     }
 
@@ -30,6 +44,11 @@ namespace GameLib.VersionHistory
         {
             _versionName = versionName;
             _changes = changes;
+        }
+
+        internal void AddChanges(IEnumerable<ChangeItem> newChanges)
+        {
+            _changes.AddRange(newChanges);
         }
     }
 

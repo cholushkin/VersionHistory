@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed5ca3bcbbb1f044a8f254df0296bd21, type: 3}
-  m_Name: VersionBuilderSettings
-  m_EditorClassIdentifier: Assembly-CSharp-Editor::GameLib.VersionHistory.Editor.VersionBuilderSettings
-  <TargetManifests>k__BackingField: []
-  <GitRepositoryPath>k__BackingField: ./
-  <GenerateMarkdown>k__BackingField: 1
-  <MarkdownExportPath>k__BackingField: CHANGELOG.md
+  m_Name: VersionHistoryExporter
+  m_EditorClassIdentifier: VersionHistory.Editor::GameLib.VersionHistory.Editor.VersionHistoryExporter
+  <TargetHistory>k__BackingField: {fileID: 11400000, guid: 32b70e3ae639892478928acbc7f3142b, type: 2}
+  <AssetName>k__BackingField: CHANGELOG
+  <IncludeAll>k__BackingField: 0
+  <TakeOnlyLastXVersions>k__BackingField: 0
   <IntroText>k__BackingField: All significant updates to this product will be recorded
     in this file.
   <CompanyName>k__BackingField: My Company

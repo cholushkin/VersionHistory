@@ -1,28 +1,45 @@
+// todo: implement HTML generation logic in a separate ChangelogHtmlGenerator
+// idea: add an option to inject custom CSS if HTML export is triggered
+
 using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 namespace GameLib.VersionHistory.Editor
 {
     public static class ChangelogMarkdownGenerator
     {
-        public static void Generate(VersionBuilderSettings settings, VersionManifest manifest)
+        public static void Generate(VersionHistoryExporter exporter)
         {
-            var sb = new StringBuilder();
-            sb.AppendLine("# Changelog");
-            
-            if (!string.IsNullOrWhiteSpace(settings.IntroText))
+            if (exporter.TargetHistory == null)
             {
-                sb.AppendLine(settings.IntroText);
+                Debug.LogError("[VersionHistory] TargetHistory is missing on the Exporter.");
+                return;
+            }
+
+            var sb = new StringBuilder();
+            sb.AppendLine($"# {exporter.AssetName}");
+            
+            if (!string.IsNullOrWhiteSpace(exporter.IntroText))
+            {
+                sb.AppendLine(exporter.IntroText);
                 sb.AppendLine();
             }
 
-            foreach (var version in manifest.Versions)
+            var versionsToExport = exporter.TakeOnlyLastXVersions > 0 
+                ? exporter.TargetHistory.Versions.Take(exporter.TakeOnlyLastXVersions) 
+                : exporter.TargetHistory.Versions;
+
+            foreach (var version in versionsToExport)
             {
-                var includedChanges = version.Changes.Where(c => c.IsIncluded).ToList();
-                if (includedChanges.Count == 0) continue;
+                var changes = exporter.IncludeAll 
+                    ? version.Changes 
+                    : version.Changes.Where(c => c.IsIncluded).ToList();
+
+                if (!changes.Any()) continue;
 
                 string versionTitle = version.VersionName.StartsWith("not-versioned-yet")
                     ? "## Unreleased"
@@ -31,7 +48,7 @@ namespace GameLib.VersionHistory.Editor
                 sb.AppendLine(versionTitle);
                 sb.AppendLine();
 
-                var grouped = includedChanges
+                var grouped = changes
                     .GroupBy(c => c.Category)
                     .OrderBy(g => (int)g.Key);
 
@@ -52,20 +69,40 @@ namespace GameLib.VersionHistory.Editor
             sb.AppendLine("---");
             string year = DateTime.Now.Year.ToString();
             
-            if (!string.IsNullOrWhiteSpace(settings.CopyrightFormat))
+            if (!string.IsNullOrWhiteSpace(exporter.CopyrightFormat))
             {
-                sb.AppendLine(string.Format(settings.CopyrightFormat, year, settings.CompanyName));
+                sb.AppendLine(string.Format(exporter.CopyrightFormat, year, exporter.CompanyName));
             }
             else
             {
-                sb.AppendLine($"© {year} {settings.CompanyName}. All rights reserved.");
+                sb.AppendLine($"© {year} {exporter.CompanyName}. All rights reserved.");
             }
 
-            string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
-            string fullPath = Path.Combine(projectRoot, settings.MarkdownExportPath);
+            SaveFile(exporter, sb.ToString(), "md");
+        }
+
+        private static void SaveFile(VersionHistoryExporter exporter, string content, string extension)
+        {
+            string exporterAssetPath = AssetDatabase.GetAssetPath(exporter);
+            string directory = Path.GetDirectoryName(exporterAssetPath);
             
-            File.WriteAllText(fullPath, sb.ToString());
-            Debug.Log($"[VersionHistory] Markdown exported to: {fullPath}");
+            string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+            string fullPath = Path.Combine(projectRoot, directory, $"{exporter.AssetName}.{extension}");
+            
+            bool fileExists = File.Exists(fullPath);
+            
+            File.WriteAllText(fullPath, content);
+            
+            if (fileExists)
+            {
+                Debug.Log($"[VersionHistory] Overwrote existing file at: {fullPath}");
+            }
+            else
+            {
+                Debug.Log($"[VersionHistory] Created new file at: {fullPath}");
+            }
+            
+            AssetDatabase.Refresh();
         }
 
         private static string GetCategoryDisplayName(ChangeCategory category)

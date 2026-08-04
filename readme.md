@@ -1,5 +1,6 @@
 # GameLib Version History Module
 
+![screenshot](Documentation/Logo.jpg)
 ![screenshot](Documentation/Screenshot_1.jpg)
 
 An automated pipeline for Unity that extracts Git commit history, parses Conventional Commits, and safely bridges repository data into both **Runtime Assets** (for in-game debug overlays) and **Markdown** (for standard `CHANGELOG.md` files).
