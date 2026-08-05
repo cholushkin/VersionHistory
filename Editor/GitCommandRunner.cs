@@ -55,8 +55,10 @@ namespace GameLib.VersionHistory.Editor
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
 
-                // Yield and wait for the process to exit without blocking the Unity Editor
+                // Yield and wait for the process to exit
                 int exitCode = await tcs.Task;
+
+                await UniTask.SwitchToMainThread();
 
                 if (exitCode != 0)
                 {

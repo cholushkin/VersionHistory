@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07760055fa37f6b4eae359a4e8239f2b, type: 3}
+  m_Name: VersionHistory(VersionHistoryModule) #public
+  m_EditorClassIdentifier: VersionHistoryRuntime::GameLib.VersionHistory.VersionHistory
+  _elements:
+  - IsVersionHeader: 1
+    VersionName: not-versioned-yet
+    Category: 0
+    Description: 
+    IsIncluded: 0
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 7
+    Description: readme.md
+    IsIncluded: 0
+  - IsVersionHeader: 1
+    VersionName: v1.2.0
+    Category: 0
+    Description: 
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 1
+    Description: 'Rework UX:
+
+      - 3 window system(GitFetchWindow, VersionHistoryWindow,
+      ExporterWindow)'
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 7
+    Description: New readme.md
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 5
+    Description: Global refactoring of entire module
+    IsIncluded: 1
+  - IsVersionHeader: 1
+    VersionName: v1.1.0
+    Category: 0
+    Description: 
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 1
+    Description: Custom editors
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 5
+    Description: Async logic
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 5
+    Description: Global refactoring of entire module
+    IsIncluded: 1
+  - IsVersionHeader: 1
+    VersionName: v1.0.1
+    Category: 0
+    Description: 
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 1
+    Description: Embeded git
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 1
+    Description: Editor based version history editing
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 1
+    Description: Render markdown changelog
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 7
+    Description: Readme.md itroduced
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 5
+    Description: Refactoring
+    IsIncluded: 1
+  - IsVersionHeader: 1
+    VersionName: v1.0.0
+    Category: 0
+    Description: 
+    IsIncluded: 1
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 1
+    Description: File based version history editing
+    IsIncluded: 1
+  - IsVersionHeader: 1
+    VersionName: v0.0.1
+    Category: 0
+    Description: 
+    IsIncluded: 0
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 0
+    Description: + Initial commit
+    IsIncluded: 0
+  - IsVersionHeader: 0
+    VersionName: 
+    Category: 0
+    Description: Initial commit
+    IsIncluded: 0

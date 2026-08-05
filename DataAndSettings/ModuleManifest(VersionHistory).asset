@@ -15,10 +15,9 @@ MonoBehaviour:
   Name: VersionHistory
   Version: 1.0.0
   Icon: {fileID: 21300000, guid: 8f09b7757ea067e4fbbba38fade85bf9, type: 3}
-  Description: The VersionHistory module asynchronously extracts Git commits into
-    lightweight `VersionManifest` runtime assets and exports formatted `CHANGELOG.md`
-    files based on Conventional Commits. It decouples editor build settings from
-    game data to optimize build sizes while providing version history to in-game
-    dev overlays.
+  Description: The VersionHistory module extracts Git commits into lightweight `VersionManifest`
+    runtime assets and exports formatted `CHANGELOG.md` files based on Conventional
+    Commits. It decouples editor build settings from game data to optimize build
+    sizes while providing version history to in-game dev overlays.
   Tags:
   - code
