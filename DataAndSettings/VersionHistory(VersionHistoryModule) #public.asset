@@ -31,7 +31,7 @@ MonoBehaviour:
   - IsVersionHeader: 0
     VersionName: 
     Category: 1
-    Description: 'Rework UX:
+    Description: 'Rework UX
 
       - 3 window system(GitFetchWindow, VersionHistoryWindow,
       ExporterWindow)'
