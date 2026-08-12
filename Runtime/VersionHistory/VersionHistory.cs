@@ -1,3 +1,6 @@
+// todo: consider adding version release dates for chronological sorting
+// idea: support parsing from external JSON or ScriptableObject directly via a builder
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +13,6 @@ namespace GameLib.VersionHistory
     {
         [SerializeField] private List<HistoryElement> _elements = new();
 
-        // Project the flat list into the grouped structure expected by the rest of the application
         public IReadOnlyList<VersionEntry> Versions
         {
             get
@@ -23,7 +25,7 @@ namespace GameLib.VersionHistory
                     if (el.IsVersionHeader)
                     {
                         currentChanges = new List<ChangeItem>();
-                        versions.Add(new VersionEntry(el.VersionName, currentChanges));
+                        versions.Add(new VersionEntry(el.VersionName, el.IsIncluded, currentChanges));
                     }
                     else if (currentChanges != null)
                     {
@@ -42,7 +44,6 @@ namespace GameLib.VersionHistory
             
             if (headerIndex != -1)
             {
-                // Inject right after the header
                 _elements.InsertRange(headerIndex + 1, newElements);
             }
             else
@@ -80,15 +81,16 @@ namespace GameLib.VersionHistory
         }
     }
 
-    // Public API DTOs (No longer serialized, generated on the fly by the Versions getter)
     public class VersionEntry
     {
         public string VersionName { get; }
+        public bool IsIncluded { get; }
         public IReadOnlyList<ChangeItem> Changes { get; }
 
-        public VersionEntry(string versionName, List<ChangeItem> changes)
+        public VersionEntry(string versionName, bool isIncluded, List<ChangeItem> changes)
         {
             VersionName = versionName;
+            IsIncluded = isIncluded;
             Changes = changes;
         }
     }

@@ -1,4 +1,4 @@
-// todo: implement HTML generation logic in a separate ChangelogHtmlGenerator
+// idea: implement HTML generation logic in a separate ChangelogHtmlGenerator
 // idea: add an option to inject custom CSS if HTML export is triggered
 
 using System;
@@ -35,53 +35,34 @@ namespace GameLib.VersionHistory.Editor
 
             foreach (var version in versionsToExport)
             {
+                if (!exporter.IncludeAll && !version.IsIncluded) continue;
+
                 var changes = exporter.IncludeAll 
                     ? version.Changes 
                     : version.Changes.Where(c => c.IsIncluded).ToList();
 
                 if (!changes.Any()) continue;
 
-                string versionTitle = version.VersionName.StartsWith("not-versioned-yet")
-                    ? "## Unreleased"
-                    : $"## {version.VersionName}";
+                string versionTitle = version.VersionName;
+                sb.AppendLine($"## {versionTitle}");
+                
+                var groupedChanges = changes.GroupBy(c => c.Category);
 
-                sb.AppendLine(versionTitle);
-                sb.AppendLine();
-
-                var grouped = changes
-                    .GroupBy(c => c.Category)
-                    .OrderBy(g => (int)g.Key);
-
-                foreach (var group in grouped)
+                foreach (var group in groupedChanges)
                 {
                     sb.AppendLine($"### {GetCategoryDisplayName(group.Key)}");
-                    sb.AppendLine();
-
-                    foreach (var item in group)
+                    foreach (var change in group)
                     {
-                        sb.AppendLine($"- {item.Description}");
+                        sb.AppendLine($"- {change.Description}");
                     }
-                    
                     sb.AppendLine();
                 }
             }
 
-            sb.AppendLine("---");
-            string year = DateTime.Now.Year.ToString();
-            
-            if (!string.IsNullOrWhiteSpace(exporter.CopyrightFormat))
-            {
-                sb.AppendLine(string.Format(exporter.CopyrightFormat, year, exporter.CompanyName));
-            }
-            else
-            {
-                sb.AppendLine($"© {year} {exporter.CompanyName}. All rights reserved.");
-            }
-
-            SaveFile(exporter, sb.ToString(), "md");
+            WriteToFile(exporter, sb.ToString(), "md");
         }
 
-        private static void SaveFile(VersionHistoryExporter exporter, string content, string extension)
+        private static void WriteToFile(VersionHistoryExporter exporter, string content, string extension)
         {
             string exporterAssetPath = AssetDatabase.GetAssetPath(exporter);
             string directory = Path.GetDirectoryName(exporterAssetPath);
