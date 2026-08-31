@@ -59,6 +59,13 @@ namespace GameLib.VersionHistory.Editor
                 }
             }
 
+            if (!string.IsNullOrWhiteSpace(exporter.CopyrightFormat) && !string.IsNullOrWhiteSpace(exporter.CompanyName))
+            {
+                sb.AppendLine();
+                sb.AppendLine("---");
+                sb.AppendLine(string.Format(exporter.CopyrightFormat, DateTime.Now.Year, exporter.CompanyName));
+            }
+
             WriteToFile(exporter, sb.ToString(), "md");
         }
 
