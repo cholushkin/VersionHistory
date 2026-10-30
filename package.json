@@ -1,0 +1,17 @@
+{
+  "name": "com.qcat.versionhistory",
+  "version": "1.2.0",
+  "displayName": "Version History",
+  "description": "Generates and manages version history / changelogs from git commit history inside the Unity Editor, following Conventional Commits.",
+  "unity": "2021.3",
+  "keywords": ["changelog", "version", "git", "editor-tool"],
+  "author": {
+    "name": "Maxim Cholushkin",
+    "email": "cholushkin@gmail.com",
+    "url": "https://sites.google.com/view/cholushkinmaximcard/home"
+  },
+  "dependencies": {},
+  "documentationUrl": "https://github.com/cholushkin/VersionHistory/blob/master/README.md",
+  "changelogUrl": "https://github.com/cholushkin/VersionHistory/blob/master/CHANGELOG.md",
+  "licensesUrl": "https://github.com/cholushkin/VersionHistory/blob/master/LICENSE"
+}

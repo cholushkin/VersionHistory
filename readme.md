@@ -1,7 +1,7 @@
 # GameLib Version History Module
 
-![screenshot](Documentation/Logo.jpg)
-![screenshot](Documentation/Screenshot_1.jpg)
+![screenshot](Documentation~/Logo.jpg)
+![screenshot](Documentation~/Screenshot_1.jpg)
 
 An automated pipeline for Unity that extracts Git commit history, parses Conventional Commits, and safely bridges repository data into both **Runtime Assets** (for in-game debug overlays) and **Markdown** (for standard release notes).
 
@@ -70,3 +70,23 @@ The parser follows strict [Conventional Commits](https://www.conventionalcommits
 | `build` / `ci` | **Build & CI** | |
 | `chore`, `refactor`, `style` | **Internal** | *Auto-excluded* by default to reduce noise, unless explicitly toggled on. |
 | *No Prefix* | **Uncategorized** | Basic commits (like "Initial commit"). Can be optionally included via the Editor window settings. |
+
+## Installation
+
+Install via Unity Package Manager using a Git URL:
+
+`Window > Package Manager > + > Install package from git URL...`
+
+```
+https://github.com/cholushkin/VersionHistory.git
+```
+
+### Required manual dependencies
+
+The Editor assembly references [UniTask](https://github.com/Cysharp/UniTask) directly. Install it before installing VersionHistory:
+
+| Package | Source |
+|---|---|
+| [UniTask](https://github.com/Cysharp/UniTask) | Git: `https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask` |
+
+The Editor assembly also references the Runtime assembly (`VersionHistoryRuntime`, internal) and TextMeshPro — the latter resolves via Unity's built-in TMP Essentials and needs no separate action.
