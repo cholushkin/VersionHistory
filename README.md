@@ -30,6 +30,11 @@ The module is divided into two distinct assembly layers to protect your build si
 * **`VersionHistoryEditorWindow`**: The central IMGUI curation hub. It fetches logs via Git, checks for exact-string duplicates, handles uncategorized commits, and injects selected items into your `VersionHistory` asset.
 * **`VersionHistoryExporter`**: A 1:1 configuration asset tied to a specific `VersionHistory`. It manages formatting overrides (like limiting output to the last X versions) and writes the final `.md` file to disk.
 
+### 3. Optional integration (`VersionHistory.Integrations.GameLib`)
+* `Runtime/Integrations/GameLib/` contains a `DebugWidgetVersionHistory` component (and matching `WidgetVersionHistory` / `Overlay.PageVersionHistory` prefabs under `Prefabs/Integrations/GameLib/`) that renders a `VersionHistory` asset inside a [GameLib](https://github.com/cholushkin/gamelib) debug overlay.
+* This assembly does **not** make VersionHistory depend on GameLib: it only compiles its content when a `com.qcat.gamelib` package is detected in the project (via an asmdef `versionDefines` entry defining `GAMELIB_PRESENT`). Without GameLib installed, the assembly is empty and the rest of VersionHistory is unaffected.
+* Install GameLib if you want this widget; otherwise ignore the `Integrations/` folder entirely.
+
 ---
 
 ## 🚀 Setup & Usage

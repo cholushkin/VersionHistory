@@ -1,6 +1,12 @@
 # CHANGELOG
 All significant updates to this product will be recorded in this file.
 
+## Unreleased
+
+### Features
+
+- Added optional `VersionHistory.Integrations.GameLib` assembly (`Runtime/Integrations/GameLib/`, `Prefabs/Integrations/GameLib/`): the `DebugWidgetVersionHistory` widget and its demo prefabs, moved here from gamelib so neither package has a hard dependency on the other. Compiles only when `com.qcat.gamelib` is present (via `versionDefines`).
+
 ## v1.2.0
 
 ### Features

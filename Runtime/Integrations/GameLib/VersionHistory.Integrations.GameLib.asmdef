@@ -1,0 +1,24 @@
+{
+    "name": "VersionHistory.Integrations.GameLib",
+    "rootNamespace": "",
+    "references": [
+        "VersionHistoryRuntime",
+        "GameLib",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.qcat.gamelib",
+            "expression": "",
+            "define": "GAMELIB_PRESENT"
+        }
+    ],
+    "noEngineReferences": false
+}
