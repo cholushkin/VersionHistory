@@ -38,7 +38,7 @@ namespace GameLib.VersionHistory.Editor
         private GUIStyle _versionBlockStyle;
         private GUIStyle _leftAlignedLabel;
 
-        [MenuItem("Window/GameLib/Version History Editor")]
+        [MenuItem("GameLib/Version History Editor")]
         public static void ShowWindow()
         {
             var window = GetWindow<VersionHistoryEditorWindow>("Git Version Editor");
